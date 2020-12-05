@@ -48,7 +48,6 @@ getPuzzleInput()
 getPuzzleInput()
   .reduce(parseBoardingPass, [])
   .sort((a,b) => a.seatId - b.seatId)
-  .slice(-1)
   .filter(
     (v, i, a) => {
         if (i === 0 || i === a.length - 1) return false;
