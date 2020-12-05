@@ -19,7 +19,7 @@ const containsValidFields = (passport) => VALID_FIELDS.every(
     field => passport.includes(field)
 );
 
-getPuzzleInput().filter(passport => containsValidFields(passport)).length
+getPuzzleInput().filter(containsValidFields).length
 
 // Part 2
 const VALID_EYE_COLORS = [
@@ -43,19 +43,18 @@ const FIELD_RULES = {
     ) || (
         h.includes('in') && FIELD_RULES.hgtIn(h.split('in')[0])
     ),
-    hcl: (h) => /#[0-9,a-f]{6}/.test(h),
+    hcl: (h) => /^#[0-9,a-f]{6}$/.test(h),
     ecl: (e) => VALID_EYE_COLORS.filter(v => e.includes(v)).length === 1,
     pid: (p) => p.length === 9,
     cid: () => true,
 }
 
 getPuzzleInput()
-  .filter(passport => containsValidFields(passport))
+  .filter(containsValidFields)
   .reduce((count, passport) => {
-    const fields = passport.split(/\s|\n/).map(p => p.split(':'))
+    const fields = passport.split(/\s/).map(p => p.split(':'))
     if (fields.every(
         ([field, value]) => FIELD_RULES[field](value)
     )) return count + 1;
     return count;
   }, 0)
-
