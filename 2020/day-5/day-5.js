@@ -1,4 +1,4 @@
-// Run in browser console on page https://adventofcode.com/2020/day/4/input 
+// Run in browser console on page https://adventofcode.com/2020/day/5/input 
 
 const getPuzzleInput = () => {
     return document.getElementsByTagName('pre')[0].innerText.trim().split('\n');
